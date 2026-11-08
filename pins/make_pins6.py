@@ -1,0 +1,92 @@
+"""Batch 4 pin generator (8 Nov 2026): 25 pins (5 days at 5 a day). Reuses make_pins4 drawing code. New crops n_*.png rendered from the Example PDFs at 220 dpi and trimmed."""
+import json, sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import make_pins4 as m
+S, HERO, RAW, URL, BOARD, OUT = m.S, m.HERO, m.RAW, m.URL, m.BOARD, m.OUT
+def H(k, c=None): return (HERO[k][0], c or HERO[k][1])
+FIC = " Example data is fictional."
+PINS = [
+ dict(id="ZS-R7-H", prod="R7", lay="T2", kicker="Moving expenses", lines=["Log every moving", "expense in one place"], ticks=["Date, category, paid to", "Refundable deposits flagged", "Receipt kept? yes or no"], shot=S("n_R7_5-05.png", (0, 0, 1, 0.5)),
+      title="Moving Expense Tracker Spreadsheet | Moving Cost Log for Excel & Google Sheets",
+      desc="Log every moving expense with its date, category, who you paid, whether a deposit is refundable and whether you kept the receipt, then see spent vs left for each category. Part of a moving budget planner for Excel and Google Sheets." + FIC),
+ dict(id="ZS-R7-I", prod="R7", lay="T1", kicker="Moving budget chart", lines=["See planned vs spent", "for your move"], shot=S("c_R7_4-04.png", (0, 0.44, 1, 1)),
+      title="Moving Budget Chart Spreadsheet | Planned vs Spent by Category, Excel & Google Sheets",
+      desc="A planned vs spent chart for 12 moving cost categories updates as you log expenses, so you can see where your moving budget is going. Moving budget planner for Excel and Google Sheets." + FIC),
+ dict(id="ZS-R7-J", prod="R7", lay="T3", kicker="Planning a move", lines=["Plan your move", "budget in 5 steps"], items=["Type your move date and size", "Set a total budget and contingency", "Add mover quotes, mark one Yes", "Log each expense as you pay", "Tick off the moving checklist"], shot=S("n_R7_1-01.png", (0, 0, 1, 0.55)),
+      title="How to Plan a Moving Budget Step by Step | Moving Planner Spreadsheet",
+      desc="Plan a move in five steps: enter your move date and total budget, compare mover quotes, log every expense and tick off a dated moving checklist. Moving planner spreadsheet for Excel and Google Sheets." + FIC),
+ dict(id="ZS-R7-K", prod="R7", lay="T4", kicker="Move on your phone", lines=["Check your move", "on your phone"], ticks=["Days to move and budget left", "Tasks overdue", "Boxes packed and unpacked"], shot=S("c_R7_2-02.png", (0, 0.3, 1, 1)),
+      title="Moving Phone Summary Tracker | Moving Budget Planner Spreadsheet",
+      desc="One narrow Phone Summary tab shows days to move, budget, spent, left, your selected mover, tasks overdue and boxes packed. Phones are fine for checking; use a computer for editing. Excel and Google Sheets." + FIC),
+ dict(id="ZS-R2-H", prod="R2", lay="T1", kicker="Renovation planner", lines=["Start your renovation", "plan here"], shot=S("n_R2_1-01.png", (0, 0, 1, 0.7)),
+      title="Home Renovation Plan Template | Step by Step Renovation Planner Spreadsheet",
+      desc="Start with project settings, then add rooms with a budget target, tasks with dates, materials to order and trades and suppliers. A timeline and dashboard build themselves. Home renovation planner for Excel and Google Sheets." + FIC),
+ dict(id="ZS-R2-I", prod="R2", lay="T2", kicker="Renovation contacts", lines=["Keep every trade", "and supplier handy"], ticks=["Name, trade, phone, email", "Up to 30 contacts", "Notes for each trade"], shot=S("n_R2_14-14.png", (0, 0, 1, 0.55)),
+      title="Contractor Contact List Spreadsheet | Home Renovation Trades and Suppliers Tracker",
+      desc="Keep your contractors, trades and suppliers in one contacts list next to your renovation tasks, dates, materials and budget. Home renovation planner for Excel and Google Sheets." + FIC),
+ dict(id="ZS-R2-J", prod="R2", lay="T3", kicker="Renovation timeline", lines=["26-week renovation", "timeline"], items=["Add tasks with start and end dates", "Gantt-style bars build themselves", "Green is done, dark is scheduled", "Overdue tasks show on the dashboard"], shot=S("c_R2_7-07.png", (0.2, 0.05, 1, 0.6)),
+      title="Renovation Timeline Spreadsheet | Gantt Chart for a Home Remodel, Excel & Google Sheets",
+      desc="Enter task dates and a 26-week Gantt-style timeline builds itself: green when done, dark when scheduled. Part of a home renovation planner with rooms, materials and budget vs spent for Excel and Google Sheets." + FIC),
+ dict(id="ZS-R2-K", prod="R2", lay="T4", kicker="Materials list", lines=["Know what to order", "and when"], ticks=["Quantity, price and supplier", "Needed-by date", "Order now flag"], shot=S("c_R2_11-11.png", (0, 0, 1, 0.62)),
+      title="Renovation Materials List Spreadsheet | Order Tracker for Remodel Projects",
+      desc="Track up to 100 renovation materials with quantity, price, supplier, status and the date you need them. An Order now flag shows what is due within 14 days. Home renovation planner for Excel and Google Sheets." + FIC),
+ dict(id="ZS-R3-H", prod="R3", lay="T2", kicker="Renovation budget", lines=["Set your renovation", "budget in 4 steps"], ticks=["Total budget and contingency", "Planned amount per category", "Log each payment"], shot=S("n_R3_1-01.png", (0, 0, 1, 0.7)),
+      title="Renovation Budget Template | How to Set a Remodel Budget by Category",
+      desc="Type a total budget and contingency, set a planned amount for each category, then log every payment and watch spent, left and over plan update. Renovation budget tracker for Excel and Google Sheets." + FIC),
+ dict(id="ZS-R3-I", prod="R3", lay="T4", kicker="Expense log", lines=["Log every remodel", "payment"], ticks=["Date, vendor and amount", "Payment method and receipt", "Up to 200 expense rows"], shot=S("n_R3_3-03.png", (0, 0, 1, 0.55)),
+      title="Renovation Expense Log Spreadsheet | Remodel Payment Tracker, Excel & Google Sheets",
+      desc="Log up to 200 renovation expenses with date, category, vendor, amount, payment method and whether you kept the receipt. The tracker adds them up by category. Excel and Google Sheets." + FIC),
+ dict(id="ZS-R3-J", prod="R3", lay="T1", kicker="Renovation chart", lines=["Planned vs spent", "at a glance"], shot=S("c_R3_2-2.png", (0, 0.28, 1, 1)),
+      title="Planned vs Spent Chart | Renovation Budget Tracker Spreadsheet for Remodels",
+      desc="A planned vs spent chart updates as you log expenses, and orange flags show which categories are over plan. Renovation budget tracker for Excel and Google Sheets." + FIC),
+ dict(id="ZS-P06-H", prod="P06", lay="T1", kicker="Homeschool records", lines=["Start your homeschool", "transcript here"], shot=S("n_P06_1-01.png", (0, 0, 1, 0.62)),
+      title="Homeschool Transcript Setup | Grading Scale and GPA Template, Excel & Google Sheets",
+      desc="Type the student and school, then edit the grading scale: % cutoffs, grade points and the GPA bonus for Honors, AP and Dual enrollment. A homeschool transcript template for Excel and Google Sheets." + " Example student is fictional."),
+ dict(id="ZS-P06-I", prod="P06", lay="T2", kicker="Weighted gradebook", lines=["Weighted grades", "for each course"], ticks=["Category weights per course", "Tests, quizzes, homework", "Running grade shows"], shot=S("n_P06_5-05.png", (0, 0, 1, 0.45)),
+      title="Weighted Gradebook Spreadsheet for Homeschool | Category Weights and Running Grade",
+      desc="Set category weights for each current course, log graded items and see a running grade like B+ (90%). Weighted gradebook inside a homeschool transcript template for Excel and Google Sheets." + " Example student is fictional."),
+ dict(id="ZS-P06-J", prod="P06", lay="T4", kicker="Graded items", lines=["Log every graded", "assignment"], ticks=["Up to 400 graded items", "Score, out of and percent", "Running grade per course"], shot=S("n_P06_5-05.png", (0, 0.5, 1, 1)),
+      title="Homeschool Grade Tracker Spreadsheet | Assignment Log for Excel & Google Sheets",
+      desc="Log up to 400 graded items with date, category, score and out of, and see the percent for each. Grade tracker inside a homeschool transcript and gradebook spreadsheet for Excel and Google Sheets." + " Example student is fictional."),
+ dict(id="ZS-P06-K", prod="P06", lay="T3", kicker="Homeschool high school", lines=["Homeschool records", "checklist"], items=["Add every course with credits", "Pick the final grade at course end", "Log attendance and hours", "Print the one-page transcript"], shot=S("c_P06_2-02.png", (0, 0.5, 1, 1)),
+      title="Homeschool Records Checklist | Transcript, Credits and Attendance Spreadsheet",
+      desc="Add every course with credits, pick the final grade when a course ends, log school days and hours and print a one-page transcript. Homeschool records spreadsheet for Excel and Google Sheets." + " Example student is fictional."),
+ dict(id="ZS-P01-E", prod="P01", lay="T1", kicker="Job costing", lines=["Are you making", "money on each job?"], shot=H("P01", (0.17, 0.28, 0.83, 0.62)),
+      title="Contractor Job Costing Spreadsheet | Remodel Estimate vs Actual Cost Tracker",
+      desc="Price a remodel job, track what it really costs, log change orders and see your forecast profit while the job is still running. Contractor estimate template for Excel." + FIC),
+ dict(id="ZS-P01-F", prod="P01", lay="T4", kicker="Change orders", lines=["Track change orders", "before they cost you"], ticks=["Log each change order", "Estimate vs actual", "Forecast profit"], shot=H("P01", (0.17, 0.46, 0.83, 0.82)),
+      title="Change Order Tracker Spreadsheet | Contractor Estimate and Job Profit Template",
+      desc="Log change orders, add actual costs as the job goes and check forecast profit. Contractor estimate and job costing template for Excel." + FIC),
+ dict(id="ZS-P01-G", prod="P01", lay="T2", kicker="Remodel estimate", lines=["Remodel estimate", "template for Excel"], ticks=["Quote the job", "Track real costs", "Check forecast profit"], shot=H("P01", (0.17, 0.28, 0.83, 0.82)),
+      title="Remodel Estimate Template Excel | Contractor Quote and Profit Tracker",
+      desc="Quoting jobs by feel? Price a remodel job, track what it really costs and see forecast profit. Contractor estimate template for Excel." + FIC),
+ dict(id="ZS-P02-E", prod="P02", lay="T1", kicker="Bakery pricing", lines=["What should you", "charge for cookies?"], shot=H("P02", (0.095, 0.465, 0.90, 0.80)),
+      title="Cookie Pricing Calculator Spreadsheet | Home Bakery Recipe Cost and Price",
+      desc="Find the real cost of every cookie recipe and get a suggested price that covers ingredients, packaging, your time and fees. Bakery pricing calculator for home bakers, Excel and Google Sheets." + FIC),
+ dict(id="ZS-P02-F", prod="P02", lay="T4", kicker="Cupcake pricing", lines=["Price cupcakes", "by the box"], ticks=["Build a box of 6 from recipes", "Packaging and decoration", "Suggested price"], shot=H("P02", (0.095, 0.465, 0.90, 0.74)),
+      title="Cupcake Pricing Calculator Spreadsheet | Price a Box of Cupcakes, Excel & Google Sheets",
+      desc="Build a product like a box of 6 cupcakes from one or two recipes plus packaging and decoration, then get a suggested price for your target margin. Bakery pricing calculator for Excel and Google Sheets." + FIC),
+ dict(id="ZS-P03-E", prod="P03", lay="T1", kicker="Builder bids", lines=["Compare builder", "bids line by line"], shot=H("P03", (0.19, 0.335, 0.81, 0.62)),
+      title="Builder Bid Comparison Spreadsheet | Home Build Budget for Excel & Google Sheets",
+      desc="Compare up to 5 builder bids line by line and spot items a bid leaves out. Home build budget spreadsheet with allowances, change orders, payments and a forecast final cost." + FIC),
+ dict(id="ZS-P03-F", prod="P03", lay="T4", kicker="Allowances and draws", lines=["Track allowances,", "change orders, draws"], ticks=["Allowances vs real choices", "Approved change orders only", "Paid so far, still to pay"], shot=H("P03", (0.19, 0.44, 0.81, 0.82)),
+      title="Allowance and Change Order Tracker | Home Build Budget Spreadsheet",
+      desc="Track allowances against what your choices actually cost, log change orders (only approved ones count) and record deposits, draws and payments. Home build budget spreadsheet for Excel and Google Sheets." + FIC),
+ dict(id="ZS-P03-G", prod="P03", lay="T2", kicker="Renovation budget", lines=["Will your remodel", "go over budget?"], ticks=["Forecast final cost", "Contingency left", "Payments logged"], shot=H("P03", (0.19, 0.335, 0.81, 0.80)),
+      title="Home Renovation Cost Tracker Spreadsheet | Forecast Final Cost and Contingency",
+      desc="See your forecast final cost, contingency remaining, paid so far and still to pay on one dashboard. Home build and renovation budget spreadsheet for Excel and Google Sheets." + FIC),
+ dict(id="ZS-P04-E", prod="P04", lay="T1", kicker="Embroidery pricing", lines=["Do your embroidery", "prices cover costs?"], shot=H("P04", (0.19, 0.335, 0.81, 0.62)),
+      title="Embroidery Pricing Calculator Spreadsheet | Machine Embroidery Cost and Margin",
+      desc="Price each order from your real costs or your stitch rate and compare the margin each gives you. Embroidery pricing calculator for Excel and Google Sheets. Example rates are placeholders, not industry rates."),
+ dict(id="ZS-P04-F", prod="P04", lay="T4", kicker="Embroidery quote", lines=["Send a clean quote", "with deposit"], ticks=["Deposit and balance", "Your costs stay hidden", "Garment markup"], shot=H("P04", (0.19, 0.5, 0.81, 0.82)),
+      title="Embroidery Quote Builder Spreadsheet | Client Quote with Deposit, Excel & Google Sheets",
+      desc="Print a client quote with deposit and balance that does not show your costs. Embroidery pricing spreadsheet with stitch-rate pricing and a garment markup for Excel and Google Sheets. Example rates are placeholders, not industry rates."),
+]
+if __name__ == "__main__":
+    queue = []
+    for p in PINS:
+        assert len(p["title"]) <= 100 and len(p["desc"]) <= 500, (p["id"], len(p["title"]), len(p["desc"]))
+        img = m.LAY[p["lay"]](p); img.convert("RGB").save(f"{OUT}/{p['id']}.png", optimize=True)
+        queue.append(dict(id=p["id"], product=p["prod"], image=RAW + p["id"] + ".png", title=p["title"], desc=p["desc"], url=URL[p["prod"]], board=BOARD[p["prod"]]))
+        print(p["id"], p["lay"])
+    json.dump(queue, open(f"{OUT}/queue_batch4.json", "w"), indent=1, ensure_ascii=False)
